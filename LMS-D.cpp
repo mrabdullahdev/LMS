@@ -1,3 +1,6 @@
+/*This program is abous university learning management system. It has two different interfaces one for admin and other for the students.
+Admin can add a student, update his/her information and can delete a student. While a student can register courses, update courses and delete courses.*/
+
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -5,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstddef>
+
 using namespace std;
 
 // Global Variables
@@ -712,10 +716,11 @@ void DeleteCourse(string codeList[], int crtHrsList[], int semList[], string nam
 		cout << "Course has been deleted sucourseCodeessfully.\n\n";	
 }
 
-// Function for Viewing all the Courses Added
+// Function for Viewing all the Courses Added  by the student
 
 void ViewCourses(string codeList[], int crtHrsList[], int semList[], string nameList[])
 {
+	//printing all the students along with their registered courses
 	for ( i = 0; i < n; i++)
 	{
 		cout << left << setw(15) << codeList[i] << setw(50) << nameList[i] << setw(15) << crtHrsList[i] << setw(15) << semList[i] << endl;
@@ -746,8 +751,9 @@ void ViewSemesterCourses(string codeList[], int crtHrsList[], int semList[], str
 
 bool saveCourses(string codeList[], int crtHrsList[], int semList[], string nameList[])
 {
-	int a=0;
+	int flag=0;
 	ofstream file;
+	//opening the file
 	file.open("Courses.txt");
 	for(int i=0;i<n;i++)
 	{
@@ -755,10 +761,11 @@ bool saveCourses(string codeList[], int crtHrsList[], int semList[], string name
 		file<<nameList[i]<<",";
 		file<<crtHrsList[i]<<",";
 		file<<semList[i]<<endl;
-		a++;
+		flag++;
 	}
+	//closing the file
 	file.close();	
-	if(a==n && a!=0)
+	if(flag==n && flag!=0)
 		return true;
 	else
 		return false;
@@ -1046,6 +1053,7 @@ bool LoadStudents(string stdRegNoList[], string stdNamesList[], string stdCourse
 	bool load=false;
 	string data;
 	ifstream file;
+	//Opens the text file containing information about students
 	file.open("Students.txt");
 	while(!file.eof())
 	{
