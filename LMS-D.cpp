@@ -103,13 +103,13 @@ int main()
 	cout << "2     for Student\n";
 	cout << "Enter option: ";
 	cin>>option;
-		if(cin.peek()!='\n')
-			{				
-				cin.clear();
-				cin.ignore(200,'\n');
-				cout<<"You gave wrong input.\n";
-				option=-1;		
-			}
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(10000, '\n');
+		cout << " Invalid Option\n Choose again";
+		cin >> option;
+	}
 	if(option==1)
 	{
 	if(loadUsers( usersList , passwordsList))
